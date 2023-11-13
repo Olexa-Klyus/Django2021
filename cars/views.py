@@ -14,5 +14,5 @@ class CarListCreateView(APIView):
     def post(self, *args, **kwargs):
         data = self.request.data
         car = CarModel.objects.create(**data)
-
-        return Response(car)
+        print(car)
+        return Response(data)
