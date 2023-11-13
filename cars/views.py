@@ -1,3 +1,18 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-# Create your views here.
+from .models import CarModel
+
+
+# CRUD
+# create
+# read/retrive
+# update
+# delete/destroy
+
+class CarListCreateView(APIView):
+    def post(self, *args, **kwargs):
+        data = self.request.data
+        car = CarModel.objects.create(**data)
+
+        return Response('created')
