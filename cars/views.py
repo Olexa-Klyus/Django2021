@@ -15,4 +15,4 @@ class CarListCreateView(APIView):
         data = self.request.data
         car = CarModel.objects.create(**data)
 
-        return Response('created')
+        return Response(car)
