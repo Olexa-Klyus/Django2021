@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import CarModel
+from .serializers import CarSerializer
 
 
 # CRUD
@@ -13,6 +14,10 @@ from .models import CarModel
 class CarListCreateView(APIView):
     def post(self, *args, **kwargs):
         data = self.request.data
-        car = CarModel.objects.create(**data)
-        print(car)
-        return Response(data)
+        # car = CarModel.objects.create(**data)
+        serializer = CarSerializer(data=data)
+        if not serializer.is_valid():
+            return Response(serializer.errors)
+        serializer.save()
+        print(serializer.data)
+        return Response(serializer.data)
