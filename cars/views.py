@@ -28,4 +28,14 @@ class CarListCreateView(APIView):
         print(serializer.data)
         return Response(serializer.data)
 
-# class CarUpdateRetriveDestroy(APIView):
+
+class CarUpdateRetriveDestroy(APIView):
+    def get(self, *args, **kwargs):
+        car_id = kwargs.get('pk')
+
+        if not CarModel.objects.filter(pk=car_id).exists():
+            return Response('Car with this id not found')
+
+        car = CarModel.objects.get(pk=car_id)
+        serializer = CarSerializer(car)
+        return Response(serializer.data)
