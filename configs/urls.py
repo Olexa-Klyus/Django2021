@@ -5,6 +5,7 @@ from apps.cars.views import CarListCreateView, CarUpdateRetriveDestroy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cars', include('apps.cars.urls'))
+    path('cars', include('apps.cars.urls')),
+    path('auto_parks', include('apps.auto_parks.urls'))
 
 ]
