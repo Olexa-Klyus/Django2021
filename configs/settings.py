@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mar_2021',
+        'NAME': 'django_2021',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -111,4 +111,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# APPEND_SLASH = False
+APPEND_SLASH = False
