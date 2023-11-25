@@ -17,3 +17,14 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
+
+
+class ProfileModel(models.Model):
+    class Meta:
+        db_table = 'profile'
+
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    age = models.IntegerField()
+    phone = models.CharField(max_length=10)
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')
