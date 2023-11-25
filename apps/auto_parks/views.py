@@ -1,10 +1,11 @@
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveDestroyAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListCreateAPIView, RetrieveDestroyAPIView
 from rest_framework.response import Response
+
+from apps.cars.serializers import CarSerializer
 
 from .models import AutoParksModel
 from .serializers import AutoParkSerializer
-from apps.cars.serializers import CarSerializer
 
 
 class AutoParksListCreateView(ListCreateAPIView):
@@ -27,6 +28,7 @@ class AutoParksRetriveDestroyView(RetrieveDestroyAPIView):
 #     def perform_create(self, serializer):
 #         auto_park = self.get_object()
 #         serializer.save(auto_park=auto_park)
+
 
 # або через звичайний дженерік
 class AutoParkAddCarView(GenericAPIView):

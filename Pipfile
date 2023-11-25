@@ -15,6 +15,7 @@ typing-extensions = "==4.8.0"
 tzdata = "==2023.3"
 
 [dev-packages]
+isort = "*"
 
 [requires]
 python_version = "3.10"
