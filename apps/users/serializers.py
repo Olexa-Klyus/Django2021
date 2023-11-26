@@ -22,3 +22,5 @@ class UserSerializer(ModelSerializer):
             'id', 'email', 'password', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'create_at', 'updated_at',
             'profile'
         )
+        read_only_fields = (
+            'id', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'create_at', 'updated_at', 'profile')
