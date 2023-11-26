@@ -14,6 +14,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # якщо потрібно робити логінацію через email а не як стандартно через username, змінюємо поле USERNAME_FIELD
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
