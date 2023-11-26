@@ -1,10 +1,14 @@
+from typing import Type
+
 from django.contrib.auth import get_user_model
+from django.db import transaction
 
 from rest_framework.serializers import ModelSerializer
 
-from .models import ProfileModel
+from .models import ProfileModel, UserModel
 
-UserModel = get_user_model()
+# щоб дістатися иетодів, які ми створювали в UserModel, потрібно типізувати UserModel (використовуємо Type)
+UserModel: Type[UserModel] = get_user_model()
 
 
 class ProfileSerializer(ModelSerializer):
@@ -14,7 +18,7 @@ class ProfileSerializer(ModelSerializer):
 
 
 class UserSerializer(ModelSerializer):
-    profile = ProfileSerializer
+    profile = ProfileSerializer()
 
     class Meta:
         model = UserModel
@@ -24,3 +28,13 @@ class UserSerializer(ModelSerializer):
         )
         read_only_fields = (
             'id', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'create_at', 'updated_at', 'profile')
+
+    @transaction.atomic  # створюємо контроль транзакцій, щоб відкотити створення usera якщо не створиться профіль
+    def create(self, validated_data: dict):
+        # щоб записати видаляємо з валідованого юзера профіль
+        profile = validated_data.pop('profile')
+
+        # використовуємо наш створений метод
+        user = UserModel.objects.create_user(**validated_data)
+        ProfileModel.objects.create(**profile, user=user)
+        return user
