@@ -29,9 +29,16 @@ class UserSerializer(ModelSerializer):
         read_only_fields = (
             'id', 'is_staff', 'is_superuser', 'is_active', 'last_login', 'create_at', 'updated_at', 'profile')
 
+        # щоб не показувався хешований пароль, потрібно в extra_kwarks словник передати значення
+        extra_kwargs = {
+            'password': {
+                'write_only': True
+            }
+        }
+
     @transaction.atomic  # створюємо контроль транзакцій, щоб відкотити створення usera якщо не створиться профіль
     def create(self, validated_data: dict):
-        # щоб записати видаляємо з валідованого юзера профіль
+        # щоб записати в базу, видаляємо з валідованого юзера профіль
         profile = validated_data.pop('profile')
 
         # використовуємо наш створений метод
