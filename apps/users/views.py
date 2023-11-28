@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 
 from .serializers import UserSerializer
@@ -14,3 +15,5 @@ class UserListCreateView(ListCreateAPIView):
     # якщо прописати в класі наступне, на виході буде json обєкт, але щоб в кожному класі не прописувати
     # прописуємо раз у extra_kwargs і звязуємо з settings
     # renderer_classes = (JSONRenderer,)
+
+    permission_classes = (AllowAny,)
