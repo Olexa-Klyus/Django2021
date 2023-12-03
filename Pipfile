@@ -7,7 +7,6 @@ name = "pypi"
 asgiref = "==3.7.2"
 django = "==4.2.7"
 djangorestframework = "==3.14.0"
-djangorestframework-simplejwt = "==5.3.0"
 PyJWT = "==2.8.0"
 django-cors-headers = "==4.3.1"
 mysqlclient = "==2.2.0"
@@ -15,11 +14,10 @@ pytz = "==2023.3.post1"
 sqlparse = "==0.4.4"
 typing-extensions = "==4.8.0"
 tzdata = "==2023.3"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 isort = "*"
 
 [requires]
 python_version = "3.10"
-
-
