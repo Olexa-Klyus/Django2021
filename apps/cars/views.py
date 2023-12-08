@@ -1,4 +1,6 @@
+from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from .models import CarModel
 from .serializers import CarSerializer
@@ -8,6 +10,8 @@ from .serializers import CarSerializer
 class CarListCreateView(ListCreateAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+    # authentication_classes = (BasicAuthentication,)
+    # permission_classes = (IsAuthenticated,)
 
     # # щоб зробити фільтр переопреділяємо get_queryset,
     # # якщо параметр є в запиті, фільтруємо по ньому, якщо ні повертаємо без змін
