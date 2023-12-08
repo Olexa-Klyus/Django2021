@@ -7,7 +7,7 @@ from rest_framework.serializers import ModelSerializer
 
 from .models import ProfileModel, UserModel
 
-# щоб дістатися иетодів, які ми створювали в UserModel, потрібно типізувати UserModel (використовуємо Type)
+# щоб дістатися методів, які ми створювали в UserModel, потрібно типізувати UserModel (використовуємо Type)
 UserModel: Type[UserModel] = get_user_model()
 
 
