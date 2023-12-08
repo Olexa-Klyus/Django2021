@@ -19,6 +19,13 @@ class AutoParksRetriveDestroyView(RetrieveDestroyAPIView):
     serializer_class = AutoParkSerializer
     permission_classes = (AllowAny,)
 
+    # якщо для кожного метода робити свій пермішин, витягаємо з селфу метод і викликаємо для нього дозвіл
+    def get_permissions(self):
+        if self.request.method == 'DELETE':
+            return [AllowAny()]
+
+        return super().get_permissions()
+
 
 # створити нове авто через автопарк з використанням perform_create
 class AutoParkAddCarView(CreateAPIView):
