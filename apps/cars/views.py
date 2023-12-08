@@ -1,15 +1,17 @@
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import AllowAny
 
 from .models import CarModel
 from .serializers import CarSerializer
 
 
 # витягнути кари по id автопарку
-class CarListCreateView(ListCreateAPIView):
+class CarListView(ListAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (AllowAny,)
+
     # authentication_classes = (BasicAuthentication,)
     # permission_classes = (IsAuthenticated,)
 
@@ -32,3 +34,4 @@ class CarListCreateView(ListCreateAPIView):
 class CarUpdateRetriveDestroy(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (AllowAny,)
