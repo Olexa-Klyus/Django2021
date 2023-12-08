@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 
 
+# завдання menagers - доповнити обєкт objects від моделі юзера двома методами (перевизначили)
 class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_kwargs):
         if not email:
@@ -24,3 +25,5 @@ class UserManager(BaseUserManager):
 
         user = self.create_user(email, password, **extra_kwargs)
         return user
+
+# можна зробити ще якийсь метод зі своїм завданням, наприклад витягнути тільки авторизованих юзерів
