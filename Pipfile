@@ -16,6 +16,7 @@ typing-extensions = "==4.8.0"
 tzdata = "==2023.3"
 djangorestframework-simplejwt = "*"
 pillow = "*"
+django-dotenv = "*"
 
 [dev-packages]
 isort = "*"
