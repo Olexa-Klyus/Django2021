@@ -8,9 +8,9 @@ from .serializers import CarSerializer
 
 # витягнути кари по id автопарку
 class CarListView(ListAPIView):
-    # queryset = CarModel.objects.all()
+    queryset = CarModel.objects.all()
     # або використати свій manager
-    queryset = CarModel.objects.get_by_price_gt(6000)
+    # queryset = CarModel.objects.get_by_price_gt(6000)
 
     serializer_class = CarSerializer
     permission_classes = (AllowAny,)
