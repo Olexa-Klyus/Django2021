@@ -8,9 +8,9 @@ from .serializers import CarSerializer
 
 # витягнути кари по id автопарку
 class CarListView(ListAPIView):
-    queryset = CarModel.objects.all()
+    # queryset = CarModel.objects.all()
     # або використати свій manager
-    # queryset = CarModel.objects.get_by_price_gt(6000)
+    queryset = CarModel.objects.get_by_price_gt(1000)
 
     serializer_class = CarSerializer
     permission_classes = (AllowAny,)
@@ -22,7 +22,8 @@ class CarListView(ListAPIView):
     # # якщо параметр є в запиті, фільтруємо по ньому, якщо ні повертаємо без змін
     def get_queryset(self):
         print('user - ', self.request.user, self.request.user.id)
-        qs = self.queryset.all()
+        # qs = self.queryset.all()
+        qs = self.queryset
         price_gt = self.request.query_params.get('price_gt')
         auto_park_id = self.request.query_params.get('auto_park_id')
 
