@@ -1,4 +1,4 @@
-import static as static
+import django.conf.urls.static as static
 # from django.contrib import admin
 from django.urls import include, path
 
@@ -10,7 +10,6 @@ urlpatterns = [
     path('cars', include('apps.cars.urls')),
     path('auto_parks', include('apps.auto_parks.urls')),
     path('users', include('apps.users.urls'))
-
 ]
 # для роботи і зберігання фотографій додаємо
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

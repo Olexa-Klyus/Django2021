@@ -4,6 +4,7 @@ from django.db import models
 
 from .enums import RegEx
 from .managers import UserManager
+from .services import upload_to
 
 
 class UserModel(AbstractBaseUser, PermissionsMixin):
@@ -36,4 +37,5 @@ class ProfileModel(models.Model):
     surname = models.CharField(max_length=100, validators=[RegexValidator(RegEx.NAME.pattern, RegEx.NAME.msg)])
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(150)])
     phone = models.CharField(max_length=10, validators=[RegexValidator(RegEx.PHONE.pattern, RegEx.PHONE.msg)])
+    avatar = models.ImageField(upload_to=upload_to, blank=True)
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')

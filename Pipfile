@@ -15,7 +15,6 @@ sqlparse = "==0.4.4"
 typing-extensions = "==4.8.0"
 tzdata = "==2023.3"
 djangorestframework-simplejwt = "*"
-static = "*"
 
 [dev-packages]
 isort = "*"
