@@ -21,9 +21,8 @@ class CarListView(ListAPIView):
     # # щоб зробити фільтр переопреділяємо get_queryset,
     # # якщо параметр є в запиті, фільтруємо по ньому, якщо ні повертаємо без змін
     def get_queryset(self):
-        print('user - ', self.request.user, self.request.user.id)
-        # qs = self.queryset.all()
-        qs = self.queryset
+        # print('user - ', self.request.user, self.request.user.id)
+        qs = self.queryset.all()
         price_gt = self.request.query_params.get('price_gt')
         auto_park_id = self.request.query_params.get('auto_park_id')
 
