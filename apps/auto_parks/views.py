@@ -1,5 +1,6 @@
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from permissions.user_permissions import IsSuperUser
 
 from apps.cars.serializers import CarSerializer
 
@@ -10,7 +11,7 @@ from .serializers import AutoParkSerializer
 class AutoParksListCreateView(ListCreateAPIView):
     queryset = AutoParksModel.objects.all()
     serializer_class = AutoParkSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsSuperUser,)
 
 
 # клас для відображення одного автопарку і видалення автопарку по id
@@ -31,6 +32,7 @@ class AutoParksRetriveDestroyView(RetrieveDestroyAPIView):
 class AutoParkAddCarView(CreateAPIView):
     queryset = AutoParksModel.objects.all()
     serializer_class = CarSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     # щоб додати номер автопарку є метод
     def perform_create(self, serializer):

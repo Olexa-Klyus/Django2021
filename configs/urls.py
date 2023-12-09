@@ -1,5 +1,8 @@
-from django.contrib import admin
+import static as static
+# from django.contrib import admin
 from django.urls import include, path
+
+from configs import settings
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -9,3 +12,5 @@ urlpatterns = [
     path('users', include('apps.users.urls'))
 
 ]
+# для роботи і зберігання фотографій додаємо
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
