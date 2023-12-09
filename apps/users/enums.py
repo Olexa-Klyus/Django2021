@@ -3,7 +3,7 @@ from enum import Enum
 
 class RegEx(Enum):
     PASSWORD = (
-        r'/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/',
+        r'^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$',
         [
             'Checks that a password has a minimum of 6 characters,'
             ' at least 1 uppercase letter,'
@@ -12,10 +12,14 @@ class RegEx(Enum):
         ]
     )
     NAME = (
-        ' ^[a-zA-Z]{2, 100}$ ',
+        r'^[a-zA-Z]{2,100}$',
         'only letters min 2 max 100'
     )
+    PHONE = (
+        r'^0\d{9}$',
+        'invalid phone '
+    )
 
-    def __init__(self, pattern: str, msg: str | list(str)):
+    def __init__(self, pattern: str, msg: str | list[str]):
         self.pattern = pattern
         self.msg = msg

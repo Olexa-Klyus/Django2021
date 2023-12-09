@@ -35,5 +35,5 @@ class ProfileModel(models.Model):
     name = models.CharField(max_length=100, validators=[RegexValidator(RegEx.NAME.pattern, RegEx.NAME.msg)])
     surname = models.CharField(max_length=100, validators=[RegexValidator(RegEx.NAME.pattern, RegEx.NAME.msg)])
     age = models.IntegerField(validators=[MinValueValidator(18), MaxValueValidator(150)])
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10, validators=[RegexValidator(RegEx.PHONE.pattern, RegEx.PHONE.msg)])
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')
