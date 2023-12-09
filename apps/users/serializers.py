@@ -3,7 +3,7 @@ from typing import Type
 from django.contrib.auth import get_user_model
 from django.db import transaction
 
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, ValidationError
 
 from .models import ProfileModel, UserModel
 
@@ -35,6 +35,26 @@ class UserSerializer(ModelSerializer):
                 'write_only': True
             }
         }
+
+    # можна зробити додаткову валідацію через метод validate
+    # додаткова валідація спрацьовує тільки після основної, яку проводять серіалайзери і яка закладена в моделі,
+    # якщо там все ок - тоді в методі validate можна зробити додаткову валідацію
+    def validate(self, attrs):
+        email = attrs['email']
+        password = attrs['password']
+        if email == password:
+            raise ValidationError({'email_eq_password': 'email equal password'})
+        # return super().validate(attrs)
+        # можна просто attrs повертати
+        return attrs
+
+    # Ще один варіант додаткової валідації - через додавання до validate через нижнє підкреслення назви поля,
+    # по якому потрібна валідація - тут значення поля profile попадає у value
+    def validate_profile(self, value):
+        name: str = value['name']
+        if name.lower() == 'max':
+            raise ValidationError('name equal Max')
+        return value
 
     @transaction.atomic  # створюємо контроль транзакцій, щоб відкотити створення usera якщо не створиться профіль
     def create(self, validated_data: dict):
