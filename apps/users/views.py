@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 
-from .serializers import UserSerializer
+from .serializers import AddAvatarSerializer, UserSerializer
 
 UserModel = get_user_model()
 
@@ -17,3 +17,10 @@ class UserListCreateView(ListCreateAPIView):
     # renderer_classes = (JSONRenderer,)
 
     permission_classes = (AllowAny,)
+
+
+class AddAvatarView(UpdateAPIView):
+    serializer_class = AddAvatarSerializer
+
+    def get_object(self):
+        return self.request.user.profile
