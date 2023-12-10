@@ -1,7 +1,10 @@
+import os
 from typing import Type
 
 from django.contrib.auth import get_user_model
+from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from django.template.loader import get_template
 
 from rest_framework.serializers import ModelSerializer, ValidationError
 
@@ -70,4 +73,10 @@ class UserSerializer(ModelSerializer):
         # використовуємо наш створений метод
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
+
+        template = get_template('register.html')
+        html_content = template.render()
+        msg = EmailMultiAlternatives('Register', from_email=os.environ.get('EMAIL_HOST_USER'), to=[user.email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
         return user
