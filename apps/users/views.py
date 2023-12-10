@@ -20,6 +20,8 @@ class UserListCreateView(ListCreateAPIView):
 
 
 class AddAvatarView(UpdateAPIView):
+    http_method_names = ('patch',)
+
     serializer_class = AddAvatarSerializer
 
     def get_object(self):
