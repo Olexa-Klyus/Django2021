@@ -74,6 +74,7 @@ class UserSerializer(ModelSerializer):
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
 
+        # відсилаємо повідомлення на пошту
         template = get_template('register.html')
         html_content = template.render()
         msg = EmailMultiAlternatives('Register', from_email=os.environ.get('EMAIL_HOST_USER'), to=[user.email])
