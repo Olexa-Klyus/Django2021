@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Apps
+    'core',
     'apps.auth',
     'apps.users',
     'apps.cars',

@@ -2,11 +2,10 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.generics import GenericAPIView, ListCreateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework import status
 
-from permissions.user_permissions import IsSuperUser
+from core.permissions.user_permissions import IsSuperUser
 from .serializers import AddAvatarSerializer, UserSerializer
 
 UserModel = get_user_model()
