@@ -20,6 +20,7 @@ class UserListCreateView(ListCreateAPIView):
 
 
 class AddAvatarView(UpdateAPIView):
+    # дозволяємо тільки patch метод
     http_method_names = ('patch',)
 
     serializer_class = AddAvatarSerializer
