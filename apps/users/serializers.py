@@ -1,14 +1,18 @@
-import os
+# import os
 from typing import Type
 
 from django.contrib.auth import get_user_model
-from django.core.mail import EmailMultiAlternatives
+# from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
-from django.template.loader import get_template
 
 from rest_framework.serializers import ModelSerializer, ValidationError
 
+from core.services.email_service import EmailService
+
 from .models import ProfileModel, UserModel
+
+# from django.template.loader import get_template
+
 
 # щоб дістатися методів, які ми створювали в UserModel, потрібно типізувати UserModel (використовуємо Type)
 UserModel: Type[UserModel] = get_user_model()
@@ -74,10 +78,11 @@ class UserSerializer(ModelSerializer):
         user = UserModel.objects.create_user(**validated_data)
         ProfileModel.objects.create(**profile, user=user)
 
-        # відсилаємо повідомлення на пошту
-        template = get_template('register.html')
-        html_content = template.render()
-        msg = EmailMultiAlternatives('Register', from_email=os.environ.get('EMAIL_HOST_USER'), to=[user.email])
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+        # # відсилаємо повідомлення на пошту
+        # template = get_template('register.html')
+        # html_content = template.render({'name': user.profile.name})
+        # msg = EmailMultiAlternatives('Register', from_email=os.environ.get('EMAIL_HOST_USER'), to=[user.email])
+        # msg.attach_alternative(html_content, "text/html")
+        # msg.send()
+        EmailService.register_email(user)
         return user

@@ -17,9 +17,9 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=255, validators=[
         RegexValidator(RegEx.PASSWORD.pattern, RegEx.PASSWORD.msg)
     ])
-    is_superuser = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

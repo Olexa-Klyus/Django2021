@@ -1,0 +1,2 @@
+class JwteXCEPTION(Exception):
+    pass
