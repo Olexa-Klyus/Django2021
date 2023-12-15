@@ -2,7 +2,7 @@ from django.urls import path
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .views import ActivateUserView
+from .views import ActivateUserView, ChangePasswordView, RecoveryPasswordRequestView
 
 urlpatterns = [
     path('', TokenObtainPairView.as_view(), name='auth_login'),
