@@ -16,6 +16,11 @@ class ActivateToken(BlacklistMixin, Token):
     token_type = ActionEnum.ACTIVATE.token_type
 
 
+class RecoveryToken(ActivateToken):
+    lifetime = ActionEnum.RECOVERY.exp_time
+    token_type = ActionEnum.RECOVERY.token_type
+
+
 class JwtService:
     @staticmethod
     def create_token(user):
