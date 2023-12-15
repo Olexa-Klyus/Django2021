@@ -1,2 +1,2 @@
-class JwteXCEPTION(Exception):
+class JwtException(Exception):
     pass

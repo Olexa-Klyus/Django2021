@@ -5,7 +5,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework_simplejwt.tokens import BlacklistMixin, Token
 
 from core.enums.action_enum import ActionEnum
-from core.exceptions.jwt_exception import JwteXCEPTION
+from core.exceptions.jwt_exception import JwtException
 
 UserModel = get_user_model()
 
@@ -27,7 +27,7 @@ class JwtService:
             action_token = ActivateToken(token)
             action_token.check_blacklist()
         except Exception:
-            raise JwteXCEPTION
+            raise JwtException
         action_token.blacklist()
         user_id = action_token.payload.get('user_id')
         return get_object_or_404(UserModel, pk=user_id)
