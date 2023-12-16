@@ -1,6 +1,9 @@
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
+
+from core.paginations.page_pagination import PagePagination
 
 from .models import CarModel
 from .serializers import CarSerializer
@@ -14,6 +17,10 @@ class CarListView(ListAPIView):
 
     serializer_class = CarSerializer
     permission_classes = (AllowAny,)
+    pagination_class = PagePagination
+    # найпростіша пагінація через клас LimitOffsetPagination,
+    # керуємо прописуючи параметри в запиті, наприклад ?limit=2&offset=2
+    # pagination_class = LimitOffsetPagination
 
     # authentication_classes = (BasicAuthentication,)
     # permission_classes = (IsAuthenticated,)
