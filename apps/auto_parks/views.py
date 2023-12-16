@@ -1,9 +1,11 @@
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+
 from core.permissions.user_permissions import IsSuperUser
 
 from apps.cars.serializers import CarSerializer
 
+from .filters import AutoParkFilter
 from .models import AutoParksModel
 from .serializers import AutoParkSerializer
 
@@ -12,6 +14,7 @@ class AutoParksListCreateView(ListCreateAPIView):
     queryset = AutoParksModel.objects.all()
     serializer_class = AutoParkSerializer
     permission_classes = (IsSuperUser,)
+    filterset_class = AutoParkFilter
 
 
 # клас для відображення одного автопарку і видалення автопарку по id
