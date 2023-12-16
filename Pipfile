@@ -17,6 +17,7 @@ tzdata = "==2023.3"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 django-dotenv = "*"
+django-filter = "*"
 
 [dev-packages]
 isort = "*"

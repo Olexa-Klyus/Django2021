@@ -5,22 +5,27 @@ from rest_framework.permissions import AllowAny
 
 from core.paginations.page_pagination import PagePagination
 
+from .filters import CarFilter
 from .models import CarModel
 from .serializers import CarSerializer
 
 
 # витягнути кари по id автопарку
 class CarListView(ListAPIView):
-    # queryset = CarModel.objects.all()
+    queryset = CarModel.objects.all()
     # або використати свій manager
-    queryset = CarModel.objects.get_by_price_gt(1000)
+    # queryset = CarModel.objects.get_by_price_gt(1000)
 
     serializer_class = CarSerializer
     permission_classes = (AllowAny,)
-    pagination_class = PagePagination
+    filterset_class = CarFilter
+
     # найпростіша пагінація через клас LimitOffsetPagination,
     # керуємо прописуючи параметри в запиті, наприклад ?limit=2&offset=2
     # pagination_class = LimitOffsetPagination
+    # Кастомна пагінація через наш клас пагінатор,
+    # pagination_class = PagePagination
+    # але переносимо її по дефолту для всіх класів
 
     # authentication_classes = (BasicAuthentication,)
     # permission_classes = (IsAuthenticated,)

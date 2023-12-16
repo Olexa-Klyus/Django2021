@@ -12,6 +12,7 @@ from .managers import CarManager
 class CarModel(models.Model):
     class Meta:
         db_table = 'cars'
+        ordering = ['id']
 
     # використання валідаторів
     # brand = models.CharField(max_length=100)
