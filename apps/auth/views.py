@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from core.services.email_service import EmailService
 from core.services.jwt_service import JwtService, RecoveryToken
 
+from apps.auth.serializers import EmailSerializer, PasswordSerializer
+
 UserModel = get_user_model()
 
 
