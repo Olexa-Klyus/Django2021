@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from core.services.email_service import EmailService
-from core.services.jwt_service import JwtService
+from core.services.jwt_service import JwtService, RecoveryToken
 
 UserModel = get_user_model()
 
