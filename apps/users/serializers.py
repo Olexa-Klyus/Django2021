@@ -86,3 +86,24 @@ class UserSerializer(ModelSerializer):
         # msg.send()
         EmailService.register_email(user)
         return user
+
+
+class OwnerNameSerializer(ModelSerializer):
+    class Meta:
+        model = ProfileModel
+        fields = ('name',)
+
+
+class OwnerSeirializer(UserSerializer):
+    profile = OwnerNameSerializer()
+
+    class Meta:
+        model = UserModel
+        fields = (
+            'email', 'is_staff', 'is_superuser', 'is_active',
+            'profile',
+        )
+        read_only_fields = (
+            'email', 'is_staff', 'is_superuser', 'is_active',
+            'profile',
+        )
