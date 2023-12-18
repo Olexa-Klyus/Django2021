@@ -65,3 +65,13 @@ class AddOwnerToAutoParkView(GenericAPIView):
         if auto_park.owners.filter(pk=user.id).exists():
             auto_park.owners.add(new_owner)
         return Response(self.serializer_class(auto_park).data)
+
+    def delete(self, *args, **kwargs):
+        # видалити юзера зі всіх автопарків, можна наприклад
+        user = self.request.user
+        # user.auto_parks.clear()
+        # або зі сторони автопарку
+        auto_park = self.get_object()
+        auto_park.owners.filter(id=user.id).delete()
+        # return Response(f'{user.profile.name} deleted from autoparks')
+        return Response(f'deleted from autoparks')
