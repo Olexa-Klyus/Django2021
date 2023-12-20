@@ -28,7 +28,7 @@ urlpatterns = [
     path('cars', include('apps.cars.urls')),
     path('auto_parks', include('apps.auto_parks.urls')),
     path('users', include('apps.users.urls')),
-    path('doc', schema_view.with_ui('swagger', cache_timeout=0)),
+    path('swagger', schema_view.with_ui('swagger', cache_timeout=0)),
 ]
 # для відхоплення 400 і 500 помилок і повідомлення в json форматі є наступне:
 # але працює тільки при DEBUG = False
