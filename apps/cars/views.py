@@ -30,7 +30,9 @@ from rest_framework import status
 #         # cars = cars.filter(brand__icontains='b')
 #         # cars = cars.filter(price__range=(3000, 8000))
 #
-#         # можна імпортнути і використовувати Q
+#         # можна імпортнути і використовувати Q для логічного або
+          # Q мають йти попереду, а потім умови без Q
+
 #         # cars = cars.filter(Q(price=4000) | Q(price=6000) | Q(brand='bmw'))
 #         # cars = cars.filter(Q(price=4000) | Q(price=6000), brand='bmw')
 #
