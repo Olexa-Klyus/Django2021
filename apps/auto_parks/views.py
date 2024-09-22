@@ -1,4 +1,6 @@
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveDestroyAPIView,GenericAPIView
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveDestroyAPIView, GenericAPIView
+from rest_framework.response import Response
+from rest_framework import status
 
 from .models import AutoParksModel
 from .serializers import AutoParkSerializer
@@ -31,4 +33,13 @@ class AutoParkAddCarView(GenericAPIView):
     queryset = AutoParksModel.objects.all()
     serializer_class = CarSerializer
 
-    def post
+    def post(self, *args, **kwargs):
+        auto_park = self.get_object()
+        car = self.request.data
+        serializer = self.serializer_class(data=car)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(auto_park=auto_park)
+        return Response(serializer.data, status.HTTP_200_OK)
+
+
+# ьщжна ще було передавати id фвтопарку через body
