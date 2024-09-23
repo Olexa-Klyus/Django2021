@@ -11,6 +11,7 @@ djangorestframework = "*"
 mysqlclient = "*"
 sqlparse = "*"
 tzdata = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 isort = "*"
