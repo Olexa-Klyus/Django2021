@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mar_2021_admin',
+        'NAME': 'mar_2021_backend_project',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
