@@ -32,3 +32,4 @@ class ProfileModel(models.Model):
     age = models.IntegerField()
     phone = models.CharField(max_length=10)
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')
+    is_auto_salon = models.BooleanField(default=False)

@@ -10,4 +10,4 @@ class AutoSalonSerializer(ModelSerializer):
 
     class Meta:
         model = AutoSalonsModel
-        fields = ('id', 'name', 'user_profile')
+        fields = ('id', 'name', 'user')

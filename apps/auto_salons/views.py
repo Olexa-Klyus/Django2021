@@ -1,5 +1,3 @@
-from django.contrib.auth import get_user_model
-
 from rest_framework.generics import ListCreateAPIView
 
 from .models import AutoSalonsModel
@@ -10,9 +8,8 @@ class AutoSalonListCreateView(ListCreateAPIView):
     queryset = AutoSalonsModel.objects.all()
     serializer_class = AutoSalonSerializer
 
+    # def get_queryset(self):
+    #     print('user - ', self.request.user.profile.name, self.request.user.autosalon.name)
 
-
-
-
-    # UserModel = get_user_model()
-    # queryset = UserModel.objects.all()
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
