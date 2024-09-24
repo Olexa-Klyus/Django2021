@@ -217,7 +217,7 @@ from rest_framework import status
 #         return super().create(self.request, *args, **kwargs)
 
 
-# class CarUpdateRetriveDestroy(GenericAPIView, UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin):
+# class CarUpdateRetrieveDestroy(GenericAPIView, UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin):
 #     queryset = CarModel.objects.all()
 #     serializer_class = CarSerializer
 #
