@@ -1,20 +1,16 @@
-from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
 
 from .models import CarModel
 from .serializers import CarSerializer
 
 
-# витягнути кари по id автопарку
 class CarListCreateView(ListCreateAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
-    # authentication_classes = (BasicAuthentication,)
-    # permission_classes = (IsAuthenticated,)
 
-    # # щоб зробити фільтр переопреділяємо get_queryset,
-    # # якщо параметр є в запиті, фільтруємо по ньому, якщо ні повертаємо без змін
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
     def get_queryset(self):
         print('user - ', self.request.user, self.request.user.id)
         qs = self.queryset.all()
@@ -29,6 +25,15 @@ class CarListCreateView(ListCreateAPIView):
         return qs
 
 
+
 class CarUpdateRetriveDestroy(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
+
+    def perform_update(self, serializer):
+        print(self.request.user.id)
+        print(serializer)
+        qs = self.queryset.all()
+        print(qs)
+
+        serializer.save()

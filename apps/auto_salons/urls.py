@@ -1,7 +1,8 @@
 from django.urls import path
 
-from .views import AutoSalonListCreateView
+from .views import AutoSalonsListCreateView, AutoSalonsListView
 
 urlpatterns = [
-    path('', AutoSalonListCreateView.as_view())
+    path('/user', AutoSalonsListCreateView.as_view()),
+    path('/all', AutoSalonsListView.as_view())
 ]
