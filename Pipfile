@@ -12,6 +12,7 @@ mysqlclient = "*"
 sqlparse = "*"
 tzdata = "*"
 djangorestframework-simplejwt = "*"
+django-dotenv = "*"
 
 [dev-packages]
 isort = "*"
