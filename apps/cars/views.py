@@ -33,6 +33,7 @@ class CarUpdateRetrieveDestroy(RetrieveUpdateDestroyAPIView):
         
         car = self.get_object()
         if self.request.user.id == car.user.id:
+            serializer.is_valid(raise_exception=True)
             serializer.save()
 
 
