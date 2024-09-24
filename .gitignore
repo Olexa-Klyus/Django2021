@@ -2,3 +2,8 @@
 .venv
 Pipfile.lock
 .env
+
+/apps/auto_salons/migrations
+/apps/cars/migrations
+/apps/users/migrations
+/apps/auto_parks/migrations
