@@ -25,11 +25,12 @@ class CarListCreateView(ListCreateAPIView):
         return qs
 
 
-class CarUpdateRetriveDestroy(RetrieveUpdateDestroyAPIView):
+class CarUpdateRetrieveDestroy(RetrieveUpdateDestroyAPIView):
     queryset = CarModel.objects.all()
     serializer_class = CarSerializer
 
     def perform_update(self, serializer):
+        
         car = self.get_object()
         if self.request.user.id == car.user.id:
             serializer.save()
