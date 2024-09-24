@@ -2,7 +2,7 @@
 .venv
 Pipfile.lock
 .env
-/apps/auto_salons/migrations/0001_initial.py
-/apps/users/migrations/0001_initial.py
-/apps/auto_salons/migrations/0002_initial.py
-/apps/cars/migrations/0002_initial.py
+apps/auto_salons/migrations
+apps/users/migrations
+apps/auto_salons
+apps/cars/migrations
